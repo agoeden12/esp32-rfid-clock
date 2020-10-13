@@ -201,6 +201,20 @@ void loop()
     else
       displayTimeout++;
   }
+  else if (check_in.pressedFor(500))
+  {
+    String uid = readUid();
+
+    display.setTextSize(2);
+    display.setCursor(0, 0);
+    display.setTextColor(WHITE);
+    display.println(uid);
+    display.display();
+
+    delay(5000);
+    display.clearDisplay();
+    display.display();
+  }
   else
   {
     if (check_in.wasPressed() || check_out.wasPressed())
