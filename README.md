@@ -21,12 +21,12 @@ This is the ESP32 code that runs the hardware for a physical clock system where 
   | 3.3v       | 3.3v  |
   
   #### SSD1306 OLED
-  | SSD1306    | ESP32 |
-  |------------|-------|
-  | RFID_SDA   | 21    |
-  | RFID_SCL   | 22    |
-  | VCC        | 3.3v  |
-  | GND        | GND   |
+  | SSD1306     | ESP32 |
+  |-------------|-------|
+  | SSD1306_SDA | 21    |
+  | SSD1306_SCL | 22    |
+  | VCC         | 3.3v  |
+  | GND         | GND   |
   
   #### Momentary Switches
   |   Check In   |   Check Out  |  ESP32  |
