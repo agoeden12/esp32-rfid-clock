@@ -194,6 +194,8 @@ void loop()
 
   if (displayState)
   {
+    
+      Serial.println("Display Active");
     if (check_in.wasPressed())
       checkIn();
     else if (check_out.wasPressed())
@@ -201,17 +203,24 @@ void loop()
     else
       displayTimeout++;
   }
-  else if (check_in.pressedFor(500))
+  else if (!displayState && check_in.wasPressed() && check_out.wasPressed())
   {
-    String uid = readUid();
+    display.setTextSize(2);
+    display.setCursor(0, 0);
+    display.setTextColor(WHITE);
+    display.println("Scan card");
+    display.display();
 
+    String uid = readUid();
+    
+    display.clearDisplay();
     display.setTextSize(2);
     display.setCursor(0, 0);
     display.setTextColor(WHITE);
     display.println(uid);
     display.display();
 
-    delay(5000);
+    delay(30000);
     display.clearDisplay();
     display.display();
   }
@@ -219,6 +228,7 @@ void loop()
   {
     if (check_in.wasPressed() || check_out.wasPressed())
     {
+      Serial.println("Button Pressed");
       displayState = true;
       displayTimeout = 0;
       display.setTextSize(1);
