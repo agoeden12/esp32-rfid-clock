@@ -21,8 +21,8 @@
 #define OLED_SCL 22
 #define OLED_SDA 21
 
-const char *ssid = ""; // Enter network SSID
-const char *password = ""; // Enter network Password
+const char *ssid = "Redwire12"; // Enter network SSID
+const char *password = ")C+A6/qi}\"By"; // Enter network Password
 
 const String api_url = "https://us-central1-evt-hours-api.cloudfunctions.net";
 
@@ -144,6 +144,18 @@ void checkOut()
   }
 }
 
+void connectToWifi()
+{
+  WiFi.begin(ssid, password);
+
+  while (WiFi.status() != WL_CONNECTED)
+  {
+    delay(500);
+    Serial.println("Connecting to WiFi...");
+  }
+  Serial.println("Connected to Network.");
+}
+
 void setup()
 {
   // Set Pinouts
@@ -157,13 +169,7 @@ void setup()
   mfrc522.PCD_Init();
 
   // Init WIFI
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED)
-  {
-    delay(500);
-    Serial.println("Connecting to WiFi...");
-  }
-  Serial.println("Connected to Network.");
+  connectToWifi();
 
   // Init I2C Display
   if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C))
@@ -181,6 +187,11 @@ void setup()
 
 void loop()
 {
+  if (WiFi.status() != WL_CONNECTED)
+  {
+    connectToWifi();
+  }
+
   if (displayState && displayTimeout > 25)
   {
     displayState = false;
