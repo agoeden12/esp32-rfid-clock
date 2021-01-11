@@ -21,8 +21,8 @@
 #define OLED_SCL 22
 #define OLED_SDA 21
 
-const char *ssid = "Redwire12"; // Enter network SSID
-const char *password = ")C+A6/qi}\"By"; // Enter network Password
+const char *ssid = ""; // Enter network SSID
+const char *password = ""; // Enter network Password
 
 const String api_url = "https://us-central1-evt-hours-api.cloudfunctions.net";
 
